@@ -1,0 +1,24 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.dbmdl
+
+## Publish
+publish/
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## OS
+.DS_Store
+Thumbs.db
+
+# Local configuration and secrets
+GiftOfTheGivers.Functions/local.settings.json
+**/local.settings.json
+**/appsettings.Development.json
+**/secrets.json

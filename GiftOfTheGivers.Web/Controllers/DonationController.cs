@@ -1,4 +1,5 @@
 ﻿using GiftOfTheGivers.Web.Models;
+using GiftOfTheGivers.Web.Services;
 using GiftOfTheGivers.Web.Services.Interfaces;
 using GiftOfTheGivers.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -13,15 +14,18 @@ public class DonationController : Controller
     private readonly IDonationService _donationService;
     private readonly IProjectService _projectService;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly AzureFunctionTaxCertificateService _azureFunctionTaxCertificateService;
 
     public DonationController(
-        IDonationService donationService,
-        IProjectService projectService,
-        UserManager<ApplicationUser> userManager)
+    IDonationService donationService,
+    IProjectService projectService,
+    UserManager<ApplicationUser> userManager,
+    AzureFunctionTaxCertificateService azureFunctionTaxCertificateService)
     {
         _donationService = donationService;
         _projectService = projectService;
         _userManager = userManager;
+        _azureFunctionTaxCertificateService = azureFunctionTaxCertificateService;
     }
 
     [HttpGet]
@@ -65,6 +69,11 @@ public class DonationController : Controller
         }
 
         var donation = await _donationService.ProcessDonationAsync(model, applicationUserId);
+        await _azureFunctionTaxCertificateService.GenerateTaxCertificateAsync(
+    donation.ReferenceNumber,
+    model.FullName,
+    model.Amount);
+
         return RedirectToAction(nameof(Success), new { reference = donation.ReferenceNumber });
     }
 

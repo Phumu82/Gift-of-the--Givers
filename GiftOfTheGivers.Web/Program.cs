@@ -45,6 +45,7 @@ builder.Services.AddScoped<IDonationService, DonationService>();
 builder.Services.AddScoped<IVolunteerService, VolunteerService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITaxCertificateService, TaxCertificateService>();
+builder.Services.AddHttpClient<AzureFunctionTaxCertificateService>();
 builder.Services.AddScoped<INewsService, NewsService>();
 
 builder.Services.AddControllersWithViews();
