@@ -1,4 +1,5 @@
 # Gift of the Givers – Disaster Relief Management System
+<img width="693" height="234" alt="image" src="https://github.com/user-attachments/assets/909f08a3-c3e8-4645-9ed1-46e71d47eb3d" />
 
 An ASP.NET Core MVC application developed to support the Gift of the Givers Foundation's disaster relief activities. The system provides a central platform where donors can contribute towards relief projects, volunteers can submit applications, and employees can manage donations, projects and other organisational activities.
 
